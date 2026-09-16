@@ -1,0 +1,25 @@
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# renv local package library
+renv/library/
+renv/staging/
+renv/sandbox/
+
+# Generated outputs - archived separately on Zenodo
+data_out/
+
+# Windows
+desktop.ini
+Thumbs.db
+
+# macOS
+.DS_Store
+
+# Local secrets / credentials
+.env
+*.key
+*.pem
