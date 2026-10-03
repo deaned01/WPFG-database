@@ -525,6 +525,19 @@ WPFG_decision_database <-
 # ============================================================
 # 14. NAME LOOKUP
 # ============================================================
+#
+# The name_lookup sheet is the intended entry point for users.
+#
+# original_name includes:
+#   - names occurring in the historical source datasets
+#   - recommended_name entries added below
+#
+# Once a candidate name has been located, the accompanying
+# APC taxonomic fields should be used to confirm identity.
+#
+# taxon_id then provides the link to WPFG_decision_database.
+#
+# ============================================================
 
 name_lookup <- master_records %>%
   
@@ -670,7 +683,85 @@ readme_version <- tibble(
 
 
 # ============================================================
-# 17. README: GENERAL INFORMATION
+# 17. README: HOW TO USE THIS DATABASE
+# ============================================================
+
+readme_usage <- tibble(
+  
+  section = c(
+    
+    "How to use this database - overview",
+    
+    "Step 1 - Find the taxon",
+    
+    "Step 1 - Search field",
+    
+    "Step 1 - Confirm the taxon",
+    
+    "Step 1 - Taxonomic caution",
+    
+    "Step 2 - Link to WPFG evidence",
+    
+    "Step 3 - Choose classification resolution",
+    
+    "Step 4 - Examine support",
+    
+    "Step 4 - Examine alternatives",
+    
+    "Step 4 - Examine evidence depth",
+    
+    "Step 5 - Examine fuzzy memberships",
+    
+    "Step 6 - Species-level evidence unavailable",
+    
+    "Step 6 - Interpret genus evidence",
+    
+    "Step 6 - Genus-level caution",
+    
+    "Step 7 - Make the final decision",
+    
+    "Step 7 - Record the decision"
+  ),
+  
+  information = c(
+    
+    "For a new species, first identify the appropriate taxonomic record in the name_lookup worksheet, use taxon_id to locate the corresponding record in WPFG_decision_database, then assess the WPFG recommendation together with its supporting evidence. If direct species-level evidence is unavailable, genus_summary can provide descriptive decision-support information.",
+    
+    "Start with the name_lookup worksheet rather than searching WPFG_decision_database directly.",
+    
+    "Search the original_name field for the taxon name. This lookup field contains names occurring in the historical source datasets and also includes the database recommended_name, allowing historical and currently recommended names to resolve to the same taxon_id where appropriate.",
+    
+    "After finding a candidate record, confirm that it represents the intended taxon using recommended_name, accepted_name, suggested_name, scientific_name, family, genus, taxon_rank and taxonomic_status.",
+    
+    "Family and genus are provided to help confirm taxonomic identity. They should not by themselves be used to assume that a species has the same WPFG as another member of the family or genus.",
+    
+    "Once the correct record has been identified in name_lookup, note its taxon_id. Use that taxon_id to locate the corresponding row in WPFG_decision_database. taxon_id is the internal link between taxonomic identity and WPFG evidence.",
+    
+    "WPFG_decision_database provides separate best_guess_7 and best_guess_10 recommendations. The seven-level and ten-level systems are alternative classification resolutions; neither is inherently preferred. Select the resolution appropriate to the study.",
+    
+    "Interpret best_guess_7 or best_guess_10 together with support_7 or support_10. Support is the proportion of dependence-adjusted historical evidence supporting the best guess.",
+    
+    "second_guess_7 or second_guess_10 identifies the strongest alternative classification. support_second and margin show how strongly the best guess is separated from that alternative. Small margins indicate greater ambiguity.",
+    
+    "n_sources gives the number of source lists contributing species-level evidence, while effective_evidence gives the sum of dependence-adjusted assignment weights. A high support value based on one source is not equivalent to the same support based on several sources or greater effective evidence.",
+    
+    "Fields beginning P_7_ and P_10_ show the full fuzzy distribution of dependence-adjusted evidence among WPFGs. They are particularly useful where evidence is divided among plausible alternatives and a single best guess would conceal meaningful disagreement.",
+    
+    "If the species has no direct species-level WPFG recommendation, consult the genus_summary worksheet.",
+    
+    "For each classification resolution, genus_summary reports the dominant WPFG among classified species in the genus, the proportion of classified species whose species-level best guess is that dominant WPFG, and the number of classified species contributing to that estimate. Both the proportion and its evidence base should be considered.",
+    
+    "Genus-level information is descriptive decision-support evidence, not an automatic species-level WPFG assignment. Users should combine it with relevant biological knowledge and the requirements of their study.",
+    
+    "The database provides evidence to support WPFG assignment; the final classification remains a user decision.",
+    
+    "Where the database is used to classify new taxa, retain enough information to reproduce the decision, including the taxonomic name used, matched taxon_id, classification resolution, selected WPFG and database version."
+  )
+)
+
+
+# ============================================================
+# 18. README: GENERAL INFORMATION
 # ============================================================
 
 readme_intro <- tibble(
@@ -678,8 +769,6 @@ readme_intro <- tibble(
   section = c(
     
     "Purpose",
-    
-    "Using the database",
     
     "7-level system",
     
@@ -706,8 +795,6 @@ readme_intro <- tibble(
     
     "This workbook provides taxonomic name harmonisation and evidence-based WPFG classifications derived from multiple historical source lists.",
     
-    "Match names from a new plant list using the name_lookup sheet, then use best_guess_7 or best_guess_10 according to the classification resolution required for the study.",
-    
     "The seven-level system comprises Tdr, Tda, ATl, ATe, ARp, ARf and S. Historical Sr, Sk and Se records are represented as S, and ATw is represented as ATe.",
     
     "The ten-level system comprises Tdr, Tda, ATw, ATl, ATe, ARp, ARf, Sr, Sk and Se. It uses only sources from the expanded classification period.",
@@ -716,15 +803,15 @@ readme_intro <- tibble(
     
     "The number of sources is the number of distinct source lists contributing species-level evidence. A result based on one source should be interpreted differently from a result supported by several sources.",
     
-    "Effective evidence is the total dependence-adjusted evidence. Repeated unchanged classifications receive reduced weight because successive lists may have inherited earlier classifications rather than independently reassessing the taxon.",
+    "Effective evidence is the total dependence-adjusted evidence contributing to a classification and is calculated as the sum of assignment-chain weights. Repeated unchanged classifications receive reduced weight because successive lists may have inherited earlier classifications rather than independently reassessing the taxon.",
     
     "The second guess is the strongest alternative WPFG. The margin is the difference between support for the best and second guesses. Small margins indicate greater ambiguity between the leading classifications.",
     
-    "Fuzzy membership fields show the full distribution of weighted evidence across WPFGs. They sum to 1 within each classification system.",
+    "Fuzzy membership fields show the full distribution of dependence-adjusted evidence across WPFGs. They sum to 1 within each classification system.",
     
-    "Names were harmonised using APC_align. accepted_name, suggested_name, scientific_name, family and genus are retained as taxonomic information from the APC alignment. Original source names are retained for traceability.",
+    "Names were harmonised using APCalign. accepted_name, suggested_name, scientific_name, family and genus are retained as taxonomic information from the APC alignment. Original source names are retained for traceability.",
     
-    "The genus_summary sheet describes WPFG composition among classified species within each genus and separately reports historical assignments made explicitly at genus or higher taxonomic rank. The proportion_species_dominant fields show the proportion of classified species whose best guess matches the dominant WPFG for the genus. n_species gives the evidence base for that proportion. Genus-level information is descriptive and does not automatically assign a WPFG to an unclassified species.",
+    "The genus_summary sheet describes WPFG composition among classified species within each genus. The proportion_species_dominant fields show the proportion of classified species whose best guess matches the dominant WPFG for the genus, while n_species gives the evidence base for that proportion. Genus-level information is descriptive and does not automatically assign a WPFG to an unclassified species.",
     
     "The seven-level and ten-level systems are alternative resolutions. Neither is inherently preferred. Users should select the system appropriate to their study."
   )
@@ -732,7 +819,7 @@ readme_intro <- tibble(
 
 
 # ============================================================
-# 18. README: MAIN DATABASE COLUMNS
+# 19. README: MAIN DATABASE COLUMNS
 # ============================================================
 
 readme_columns <- tibble(
@@ -790,7 +877,7 @@ readme_columns <- tibble(
   
   description = c(
     
-    "Stable internal identifier for the resolved taxon.",
+    "Stable internal identifier for the resolved taxon. Use this field to link a record in name_lookup to the corresponding record in WPFG_decision_database.",
     
     "All original names from source lists that resolved to this taxon. Multiple names are concatenated with ' | '.",
     
@@ -800,7 +887,7 @@ readme_columns <- tibble(
     
     "APC suggested name, retained even where it is not accepted.",
     
-    "Scientific name returned by APC_align.",
+    "Scientific name returned by APCalign.",
     
     "Family from the APC taxonomic hierarchy. Where APC does not provide an unambiguous family assignment, the field is left missing.",
     
@@ -822,7 +909,7 @@ readme_columns <- tibble(
     
     "Number of distinct sources contributing a seven-level classification.",
     
-    "Total dependence-adjusted evidence contributing to the seven-level classification.",
+    "Total dependence-adjusted evidence contributing to the seven-level classification; calculated as the sum of assignment-chain weights.",
     
     "WPFG with greatest weighted support under the ten-level system.",
     
@@ -836,13 +923,67 @@ readme_columns <- tibble(
     
     "Number of distinct sources contributing a ten-level classification.",
     
-    "Total dependence-adjusted evidence contributing to the ten-level classification."
+    "Total dependence-adjusted evidence contributing to the ten-level classification; calculated as the sum of assignment-chain weights."
   )
 )
 
 
 # ============================================================
-# 19. README: FUZZY FIELDS
+# 20. README: NAME LOOKUP FIELDS
+# ============================================================
+
+name_lookup_readme <- tibble(
+  
+  column = c(
+    
+    "original_name",
+    
+    "taxon_id",
+    
+    "recommended_name",
+    
+    "accepted_name",
+    
+    "suggested_name",
+    
+    "scientific_name",
+    
+    "family",
+    
+    "genus",
+    
+    "taxon_rank",
+    
+    "taxonomic_status"
+  ),
+  
+  description = c(
+    
+    "Primary field to search when looking up a taxon. Contains names occurring in the historical source datasets and recommended_name entries added by the database workflow.",
+    
+    "Stable internal identifier linking the lookup record to the corresponding taxon in WPFG_decision_database.",
+    
+    "Preferred name for general use. Use to help confirm that the lookup record represents the intended taxon.",
+    
+    "APC accepted name, where available. Use to help confirm taxonomic identity.",
+    
+    "Alternative or suggested name returned by APCalign.",
+    
+    "Scientific name returned by APCalign.",
+    
+    "Family from the APC taxonomic hierarchy; useful for confirming identity but not for automatically assigning a species-level WPFG.",
+    
+    "Genus from the APC taxonomic hierarchy; useful for confirming identity but not for automatically assigning a species-level WPFG.",
+    
+    "Taxonomic rank returned by APC.",
+    
+    "Taxonomic status returned by APC."
+  )
+)
+
+
+# ============================================================
+# 21. README: FUZZY FIELDS
 # ============================================================
 
 fuzzy_readme <- tibble(
@@ -909,7 +1050,7 @@ fuzzy_readme <- tibble(
 
 
 # ============================================================
-# 20. README: GENUS SUMMARY FIELDS
+# 22. README: GENUS SUMMARY FIELDS
 # ============================================================
 
 genus_readme <- tibble(
@@ -1007,12 +1148,46 @@ genus_readme <- tibble(
 
 
 # ============================================================
-# 21. ASSEMBLE README
+# 23. ASSEMBLE README
 # ============================================================
 
 readme <- bind_rows(
   
+  # ----------------------------------------------------------
+  # Release metadata
+  # ----------------------------------------------------------
+  
   readme_version,
+  
+  
+  # ----------------------------------------------------------
+  # Detailed usage instructions
+  # ----------------------------------------------------------
+  
+  tibble(
+    section = "",
+    column = "",
+    description = ""
+  ),
+  
+  readme_usage %>%
+    transmute(
+      section,
+      column = "",
+      description =
+        information
+    ),
+  
+  
+  # ----------------------------------------------------------
+  # General information
+  # ----------------------------------------------------------
+  
+  tibble(
+    section = "",
+    column = "",
+    description = ""
+  ),
   
   readme_intro %>%
     transmute(
@@ -1021,6 +1196,33 @@ readme <- bind_rows(
       description =
         information
     ),
+  
+  
+  # ----------------------------------------------------------
+  # name_lookup documentation
+  # ----------------------------------------------------------
+  
+  tibble(
+    section = "",
+    column = "",
+    description = ""
+  ),
+  
+  name_lookup_readme %>%
+    mutate(
+      section =
+        "name_lookup"
+    ) %>%
+    select(
+      section,
+      column,
+      description
+    ),
+  
+  
+  # ----------------------------------------------------------
+  # Main database documentation
+  # ----------------------------------------------------------
   
   tibble(
     section = "",
@@ -1039,6 +1241,11 @@ readme <- bind_rows(
       description
     ),
   
+  
+  # ----------------------------------------------------------
+  # Fuzzy membership documentation
+  # ----------------------------------------------------------
+  
   fuzzy_readme %>%
     mutate(
       section =
@@ -1049,6 +1256,11 @@ readme <- bind_rows(
       column,
       description
     ),
+  
+  
+  # ----------------------------------------------------------
+  # Genus summary documentation
+  # ----------------------------------------------------------
   
   genus_readme %>%
     mutate(
@@ -1064,7 +1276,7 @@ readme <- bind_rows(
 
 
 # ============================================================
-# 22. FINAL EXPORT
+# 24. FINAL EXPORT
 # ============================================================
 
 write_xlsx(
@@ -1099,7 +1311,7 @@ write_xlsx(
 
 
 # ============================================================
-# 23. QA
+# 25. QA
 # ============================================================
 
 cat(
