@@ -276,10 +276,23 @@ The corresponding source code, input data and reproducible R environment are mai
 
 ## Citation
 
-Citation information for Version 1 will be added following publication of the database and assignment of its Zenodo DOI.
+When using the WPFG Database in research, please cite the accompanying Data Descriptor as the primary scholarly reference:
 
-A Data Descriptor describing the database and its construction is also in preparation.
+> Deane, D. C., et al. *Water plant functional groups: a trait-based classification database for Australian plants*. [journal/preprint details and DOI to be added]
+
+The Zenodo DOI identifies the specific version of the WPFG Database used and provides a persistent archive of the released data.
+
+Where relevant to a particular application, users are also encouraged to consult and cite the original sources of WPFG classifications identified within the database.
 
 ## Licence
 
-Licence information will be added prior to the formal Version 1 release.
+The WPFG Database is released under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** licence.
+
+The database incorporates WPFG assignments drawn from published sources and classifications contributed by participating researchers. 
+Original source attribution and provenance are retained within the database. Copyright and other rights in cited source publications 
+remain with their respective rights holders. The CC BY 4.0 licence applies only to rights that the database creators are authorised to license.
+
+Users of the database should cite the accompanying Data Descriptor paper as the primary scholarly reference.
+
+The R code used to compile, analyse and validate the database is maintained separately from the data licence. 
+The database and associated data are licensed under [CC BY 4.0](LICENSE-DATA.md). The R code used to compile, analyse and validate the database is licensed separately under the [MIT License](LICENSE-CODE).
