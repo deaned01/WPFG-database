@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying Data Descriptor when using the WPFG Database in research. Until it is published, cite this dataset release."
+type: dataset
+title: "Water Plant Functional Group (WPFG) Database: Version 1"
+version: "1.0"
+doi: 10.5281/zenodo.23128087
+url: https://github.com/deaned01/WPFG-database
+license: CC-BY-4.0
+authors:
+  - given-names: David C.
+    family-names: Deane
+    orcid: https://orcid.org/0000-0003-2144-624X
+    affiliation: "Department of Ecological, Plant and Animal Sciences, La Trobe University Bundoora"
+  - given-names: Sharon
+    family-names: Bowen
+    orcid: https://orcid.org/0000-0001-8677-8523
+    affiliation: "Surface Water Science, Water Group, Department of Climate Change, Energy, Environment and Water, Sydney, NSW, Australia"
+  - given-names: Cherie J.
+    family-names: Campbell
+    orcid: https://orcid.org/0000-0003-3342-3563
+    affiliation: "Basin Science and Knowledge, Murray-Darling Basin Authority, Mildura, Australia"
+  - given-names: Fiona J.
+    family-names: Dyer
+    orcid: https://orcid.org/0000-0003-4658-9247
+    affiliation: "Centre for Applied Water Science, Faculty of Science and Technology, University of Canberra. Australia"
+  - given-names: Fiona L.
+    family-names: Freestone
+    orcid: https://orcid.org/0009-0007-6069-5018
+    affiliation: "Resilient Landscapes Hub, National Environmental Science Program, The University of Western Australia, Perth, Western Australia, Australia"
+  - given-names: Caitlin V.
+    family-names: Johns
+    orcid: https://orcid.org/0000-0002-3114-8222
+    affiliation: "Centre for Environmental Responsibility in Mining, The University of Queensland, Brisbane, Australia"
+  - given-names: Joanne E.
+    family-names: Ling
+    orcid: https://orcid.org/0000-0001-6801-3789
+    affiliation: "Science and Insights Division, NSW Department of Climate Change, Energy, the Environment and Water, Sydney, NSW, Australia"
+  - given-names: Tanya J.
+    family-names: Mason
+    orcid: https://orcid.org/0000-0002-4797-5644
+    affiliation: "Science and Insights Division, NSW Department of Climate Change, Energy, the Environment and Water, Sydney, NSW, Australia"
+  - given-names: Kaylene
+    family-names: Morris
+    affiliation: "Arthur Rylah Institute for Environmental Research, Department of Energy, Environment and Climate Action, Heidelberg, Victoria, Australia"
+  - given-names: Jason M.
+    family-names: Nicol
+    orcid: https://orcid.org/0000-0002-8354-6409
+    affiliation: "Inland Waters and Catchment Ecology Program, South Australian Research and Development Institute, Aquatic Sciences, Henley Beach, South Australia, Australia"
+  - given-names: Alica
+    family-names: Tschierschke
+    orcid: https://orcid.org/0009-0005-1989-4707
+    affiliation: "Centre for Applied Water Science, Faculty of Science and Technology, University of Canberra. Australia"
+  - given-names: Lyndsey M.
+    family-names: Vivian
+    orcid: https://orcid.org/0000-0003-1927-723X
+    affiliation: "Arthur Rylah Institute for Environmental Research"
+  - given-names: Michelle T.
+    family-names: Casanova
+    orcid: https://orcid.org/0000-0003-0516-7275
+    affiliation: "Federation University Australia, Ballarat, Australia"
